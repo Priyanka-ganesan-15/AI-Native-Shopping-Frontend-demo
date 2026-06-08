@@ -748,6 +748,206 @@ body {
   padding: 0;
 }
 
+.workspace-v1 {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.workspace-v1__intent {
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.workspace-v1__occasion {
+  margin: 0;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5.2vw, 62px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.workspace-v1__meta {
+  margin: 12px 0 0;
+  color: var(--color-secondary-text);
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.workspace-v1__section {
+  padding: 34px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.workspace-v1__section-title {
+  margin: 0;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.workspace-v1__brief-block {
+  margin-top: 22px;
+}
+
+.workspace-v1__label {
+  margin: 0;
+  color: var(--color-secondary-text);
+  font-size: 13px;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.workspace-v1__direction {
+  margin: 10px 0 0;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.workspace-v1__summary {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--color-espresso);
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.workspace-v1__brief-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.workspace-v1__swatches,
+.workspace-v1__brand-list,
+.workspace-v1__keyword-list {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workspace-v1__swatch-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-espresso);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.workspace-v1__swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.workspace-v1__swatch--stone {
+  background: #d8d0c4;
+}
+
+.workspace-v1__swatch--navy {
+  background: #2d415f;
+}
+
+.workspace-v1__swatch--cream {
+  background: #f5f2ed;
+}
+
+.workspace-v1__swatch--espresso {
+  background: #433b34;
+}
+
+.workspace-v1__brand-list li,
+.workspace-v1__keyword-list li {
+  color: var(--color-espresso);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.workspace-moodboard {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.workspace-moodboard__tile {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 280px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.workspace-moodboard__tile--left {
+  background:
+    linear-gradient(140deg, rgba(186, 168, 150, 0.8), rgba(77, 70, 62, 0.45)),
+    radial-gradient(circle at 24% 26%, rgba(255, 255, 255, 0.42), transparent 36%);
+}
+
+.workspace-moodboard__tile--right {
+  background:
+    linear-gradient(120deg, rgba(198, 203, 195, 0.82), rgba(98, 109, 125, 0.52)),
+    radial-gradient(circle at 74% 34%, rgba(255, 255, 255, 0.36), transparent 34%);
+}
+
+.workspace-moodboard__tile--wide {
+  grid-column: 1 / -1;
+  min-height: 320px;
+  background:
+    linear-gradient(125deg, rgba(214, 206, 198, 0.74), rgba(116, 96, 85, 0.54)),
+    radial-gradient(circle at 56% 18%, rgba(255, 255, 255, 0.35), transparent 42%);
+}
+
+.workspace-moodboard__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.28), rgba(26, 26, 26, 0));
+}
+
+.workspace-moodboard__label {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  margin: 0;
+  color: #f7f5f1;
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.workspace-v1__notes {
+  max-width: 760px;
+  margin: 20px 0 0;
+  color: var(--color-espresso);
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+.workspace-v1__cta {
+  margin-top: 30px;
+  border: 0;
+  background: transparent;
+  color: var(--color-espresso);
+  font-size: 18px;
+  font-weight: var(--weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  padding: 0;
+}
+
 @keyframes concierge-fade {
   from {
     opacity: 0;
@@ -975,6 +1175,18 @@ body {
 
   .workspace-brief__grid {
     grid-template-columns: 1fr;
+  }
+
+  .workspace-v1__brief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-moodboard {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-moodboard__tile--wide {
+    grid-column: auto;
   }
 
   .concierge-flow__card {

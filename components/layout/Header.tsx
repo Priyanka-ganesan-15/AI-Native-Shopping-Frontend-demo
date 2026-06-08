@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UserMenu from "./UserMenu";
+import React from "react";
 
 const NAV_ITEMS = [
   { href: "/concierge", label: "Concierge" },
   { href: "/workspace", label: "Workspace" },
   { href: "/discover", label: "Discover" },
-  { href: "/friends", label: "Friends" },
   { href: "/closet", label: "Closet" },
   { href: "/style-dna", label: "Style DNA" },
 ];

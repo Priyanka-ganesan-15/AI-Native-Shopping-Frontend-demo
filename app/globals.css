@@ -222,6 +222,312 @@ body {
   letter-spacing: 0;
 }
 
+.concierge-layout {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.concierge-hero {
+  text-align: center;
+}
+
+.concierge-hero__eyebrow {
+  margin: 0;
+  color: var(--color-secondary-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.concierge-hero__title {
+  margin: 20px 0 0;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: clamp(56px, 7vw, 72px);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.concierge-hero__description {
+  max-width: 640px;
+  margin: 20px auto 0;
+  color: var(--color-espresso);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.intent-input {
+  margin-top: 44px;
+}
+
+.intent-input__field {
+  width: 100%;
+  height: 64px;
+  border: 0;
+  border-bottom: 1px solid #d8d3cc;
+  background: transparent;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: var(--weight-medium);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding: 0;
+}
+
+.intent-input__field::placeholder {
+  color: rgba(67, 59, 52, 0.5);
+}
+
+.intent-input__field:focus {
+  outline: none;
+  border-bottom-color: var(--color-espresso);
+}
+
+.preference-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 28px;
+}
+
+.preference-group__label {
+  margin: 0;
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.preference-group__chips {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preference-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--color-espresso);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+}
+
+.concierge-layout__footer {
+  margin-top: 52px;
+  display: flex;
+  justify-content: center;
+}
+
+.concierge-layout__cta {
+  min-width: 230px;
+  border: 0;
+  border-radius: 9999px;
+  background: #433b34;
+  color: #f7f5f1;
+  padding: 14px 26px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.concierge-flow {
+  min-height: 100vh;
+  padding: 140px 48px 72px;
+  display: grid;
+  place-items: center;
+}
+
+.concierge-flow__step {
+  width: min(980px, 100%);
+  text-align: center;
+  animation: concierge-fade 260ms ease;
+}
+
+.concierge-flow__eyebrow {
+  margin: 0;
+  color: var(--color-secondary-text);
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.concierge-flow__title {
+  margin: 20px 0 0;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: clamp(56px, 7vw, 72px);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.concierge-flow__cards {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.concierge-flow__card {
+  min-height: 126px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--color-espresso);
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.concierge-flow__detail {
+  margin-top: 48px;
+}
+
+.concierge-flow__detail--wide {
+  width: 100%;
+}
+
+.concierge-flow__selected {
+  margin: 0 0 16px;
+  color: var(--color-secondary-text);
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.concierge-flow__textarea {
+  width: min(860px, 100%);
+  min-height: 170px;
+  border: 1px solid #d8d3cc;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 20px 22px;
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.6;
+  resize: none;
+}
+
+.concierge-flow__textarea:focus {
+  outline: none;
+  border-color: var(--color-espresso);
+}
+
+.concierge-flow__footer {
+  margin-top: 34px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.concierge-flow__continue {
+  border: 0;
+  background: transparent;
+  color: var(--color-espresso);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: var(--weight-medium);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.concierge-flow__continue:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.concierge-style-grid {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.concierge-style-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.concierge-style-card.is-selected {
+  border-color: var(--color-espresso);
+  background: rgba(67, 59, 52, 0.07);
+}
+
+.concierge-style-card__image {
+  height: 196px;
+  border-radius: 10px;
+  background-color: rgba(191, 198, 184, 0.3);
+  background-position: center;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+}
+
+.concierge-style-card__image-label {
+  color: rgba(26, 26, 26, 0.48);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.concierge-style-card__name {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-charcoal);
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.concierge-style-count {
+  margin: 16px 2px 0;
+  color: var(--color-secondary-text);
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+@keyframes concierge-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .home-page {
   padding-bottom: 96px;
 }
@@ -403,6 +709,38 @@ body {
 @media (max-width: 760px) {
   .site-header__nav {
     display: none;
+  }
+
+  .page-container {
+    padding-top: 118px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .preference-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concierge-flow {
+    padding: 118px 20px 56px;
+  }
+
+  .concierge-flow__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .concierge-style-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concierge-flow__card {
+    min-height: 94px;
+    font-size: 26px;
+  }
+
+  .concierge-flow__textarea {
+    min-height: 150px;
+    font-size: 18px;
   }
 
   .home-hero__title {

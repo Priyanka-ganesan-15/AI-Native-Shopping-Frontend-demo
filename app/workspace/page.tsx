@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import PageContainer from "../../components/shared/PageContainer";
 import MoodboardGrid from "../../components/workspace/MoodboardGrid";
 import { Hanger } from "../../types/hanger";
+import SelectedProductsRail from "../../components/workspace/SelectedProductsRail";
+import { conferenceProducts, ConferenceProduct } from "../../data/products/conferenceProducts";
 
 type WorkspaceBrief = {
   occasion: string;
@@ -30,6 +32,8 @@ export default function Page() {
   const [isCreateHangerOpen, setIsCreateHangerOpen] = useState(false);
   const [hangerName, setHangerName] = useState("");
   const [hangerDescription, setHangerDescription] = useState("");
+  const [hangerPickerProduct, setHangerPickerProduct] = useState<ConferenceProduct | null>(null);
+  const [hangerFormError, setHangerFormError] = useState("");
 
   useEffect(() => {
     const savedBrief = window.sessionStorage.getItem("atelierStyleBrief");
@@ -69,6 +73,14 @@ export default function Page() {
     const trimmedName = hangerName.trim();
 
     if (!trimmedName) {
+      setHangerFormError("Please enter a hanger name.");
+      return;
+    }
+
+    const duplicateName = hangers.some((hanger) => hanger.name.toLowerCase() === trimmedName.toLowerCase());
+
+    if (duplicateName) {
+      setHangerFormError("A hanger with this name already exists.");
       return;
     }
 
@@ -76,14 +88,39 @@ export default function Page() {
       id: `hanger-${Date.now()}`,
       name: trimmedName,
       description: hangerDescription.trim() || undefined,
-      pieces: 0,
+      pieces: hangerPickerProduct ? 1 : 0,
       status: "Draft",
     };
 
     setHangers((current) => [newHanger, ...current]);
     setHangerName("");
     setHangerDescription("");
+    setHangerFormError("");
     setIsCreateHangerOpen(false);
+    setHangerPickerProduct(null);
+  }
+
+  function handleChooseHanger(hangerId: string) {
+    setHangers((current) =>
+      current.map((hanger) =>
+        hanger.id === hangerId
+          ? {
+              ...hanger,
+              pieces: hanger.pieces + 1,
+            }
+          : hanger,
+      ),
+    );
+    setHangerPickerProduct(null);
+  }
+
+  function openCreateHanger(source: "picker" | "section" = "section") {
+    if (source === "section") {
+      setHangerPickerProduct(null);
+    }
+
+    setIsCreateHangerOpen(true);
+    setHangerFormError("");
   }
 
   return (
@@ -162,6 +199,16 @@ export default function Page() {
           </p>
         </section>
 
+        <section className="workspace-v1__section" aria-labelledby="workspace-selected-title">
+          <h2 id="workspace-selected-title" className="workspace-v1__section-title">
+            Selected For This Brief
+          </h2>
+          <p className="workspace-v1__selected-subtitle">
+            Curated around your occasion, color story, and preferred silhouettes.
+          </p>
+          <SelectedProductsRail products={conferenceProducts} onAddToHanger={(product) => setHangerPickerProduct(product)} />
+        </section>
+
         <section className="workspace-v1__section" aria-labelledby="workspace-hangers-title">
           <h2 id="workspace-hangers-title" className="workspace-v1__section-title">
             Your Hangers
@@ -175,7 +222,7 @@ export default function Page() {
               <button
                 type="button"
                 className="workspace-hangers__create"
-                onClick={() => setIsCreateHangerOpen(true)}
+                onClick={() => openCreateHanger("section")}
               >
                 Create Hanger
               </button>
@@ -196,7 +243,7 @@ export default function Page() {
               <button
                 type="button"
                 className="workspace-hangers__create workspace-hangers__create--inline"
-                onClick={() => setIsCreateHangerOpen(true)}
+                onClick={() => openCreateHanger("section")}
               >
                 Create Hanger
               </button>
@@ -223,7 +270,12 @@ export default function Page() {
               id="hanger-name"
               className="workspace-modal__input"
               value={hangerName}
-              onChange={(event) => setHangerName(event.target.value)}
+              onChange={(event) => {
+                setHangerName(event.target.value);
+                if (hangerFormError) {
+                  setHangerFormError("");
+                }
+              }}
               placeholder="Day 1 Keynote"
             />
 
@@ -238,6 +290,8 @@ export default function Page() {
               placeholder="Professional but relaxed"
             />
 
+            {hangerFormError ? <p className="workspace-modal__error">{hangerFormError}</p> : null}
+
             <div className="workspace-modal__actions">
               <button
                 type="button"
@@ -246,6 +300,7 @@ export default function Page() {
                   setIsCreateHangerOpen(false);
                   setHangerName("");
                   setHangerDescription("");
+                  setHangerFormError("");
                 }}
               >
                 Cancel
@@ -256,6 +311,62 @@ export default function Page() {
                 onClick={handleCreateHanger}
               >
                 Create
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {hangerPickerProduct && !isCreateHangerOpen ? (
+        <div className="workspace-modal" role="dialog" aria-modal="true" aria-labelledby="choose-hanger-title">
+          <div className="workspace-modal__panel">
+            <h2 id="choose-hanger-title" className="workspace-modal__title">
+              Choose Hanger
+            </h2>
+            <p className="workspace-modal__helper">{hangerPickerProduct.name}</p>
+
+            {hangers.length === 0 ? (
+              <div>
+                <p className="workspace-modal__empty">Create a hanger first to save this piece.</p>
+                <button
+                  type="button"
+                  className="workspace-modal__button workspace-modal__button--primary"
+                  onClick={() => {
+                    openCreateHanger("picker");
+                  }}
+                >
+                  Create New Hanger
+                </button>
+              </div>
+            ) : (
+              <div className="workspace-modal__hanger-list">
+                {hangers.map((hanger) => (
+                  <button
+                    type="button"
+                    key={hanger.id}
+                    className="workspace-modal__hanger-item"
+                    onClick={() => handleChooseHanger(hanger.id)}
+                  >
+                    {hanger.name} ({hanger.pieces} Pieces)
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  className="workspace-modal__button workspace-modal__button--primary workspace-modal__button--inline"
+                  onClick={() => openCreateHanger("picker")}
+                >
+                  Create New Hanger
+                </button>
+              </div>
+            )}
+
+            <div className="workspace-modal__actions">
+              <button
+                type="button"
+                className="workspace-modal__button workspace-modal__button--ghost"
+                onClick={() => setHangerPickerProduct(null)}
+              >
+                Cancel
               </button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import PageContainer from "../../components/shared/PageContainer";
 import MoodboardGrid from "../../components/workspace/MoodboardGrid";
 import { Hanger } from "../../types/hanger";
@@ -25,6 +26,15 @@ const FALLBACK_BRIEF: WorkspaceBrief = {
   keywords: ["Confident", "Refined", "Tailored", "Modern"],
   createdAt: "Created June 2026",
 };
+
+function slugifyHangerName(name: string): string {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
 
 export default function Page() {
   const [brief, setBrief] = useState<WorkspaceBrief>(FALLBACK_BRIEF);
@@ -237,6 +247,9 @@ export default function Page() {
                   </div>
                   <p className="workspace-hanger-card__pieces">{hanger.pieces} Pieces</p>
                   <p className="workspace-hanger-card__description">{hanger.description || "No description yet"}</p>
+                  <Link href={`/hangers/${slugifyHangerName(hanger.name)}`} className="workspace-hanger-card__link">
+                    Open Hanger
+                  </Link>
                 </article>
               ))}
 
